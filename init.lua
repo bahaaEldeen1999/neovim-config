@@ -40,7 +40,6 @@ require('telescope').setup{
 -- vim.cmd[[packadd! one-nvim]]
 -- vim.cmd[[packadd! tokyonight]]
 
-require("tokyonight").setup()
 require("material").setup()
 -- require("barbar").setup()
 -- require("one-nvim").setup()

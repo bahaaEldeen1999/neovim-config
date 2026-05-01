@@ -1,0 +1,46 @@
+[submodule "pack/manual/start/material.nvim"]
+	path = pack/manual/start/material.nvim
+	url = https://github.com/marko-cerovac/material.nvim.git
+
+[submodule "pack/manual/start/milli.nvim"]
+	path = pack/manual/start/milli.nvim
+	url = https://github.com/Amansingh-afk/milli.nvim
+
+
+[submodule "pack/manual/start/nnn.nvim"]
+	path = pack/manual/start/nnn.nvim
+	url = https://github.com/luukvbaal/nnn.nvim
+
+[submodule "pack/manual/start/plenary.nvim"]
+	path = pack/manual/start/plenary.nvim
+	url = https://github.com/nvim-lua/plenary.nvim
+
+
+[submodule "pack/manual/start/telescope.nvim"]
+	path = pack/manual/start/telescope.nvim
+	url = https://github.com/nvim-telescope/telescope.nvim
+
+
+[submodule "pack/manual/start/vim-illuminate"]
+	path = pack/manual/start/vim-illuminate
+	url = https://github.com/rrethy/vim-illuminate
+
+
+[submodule "pack/manual/start/nvim-web-devicons"]
+	path = pack/manual/start/nvim-web-devicons
+	url = https://github.com/nvim-tree/nvim-web-devicons 
+
+
+
+[submodule "pack/manual/start/toggleterm.nvim"]
+	path = pack/manual/start/toggleterm.nvim
+	url = https://github.com/akinsho/toggleterm.nvim 
+
+
+
+[submodule "pack/manual/start/galaxyline.nvim"]
+	path = pack/manual/start/galaxyline.nvim
+	url = https://github.com/nvimdev/galaxyline.nvim 
+
+
+
