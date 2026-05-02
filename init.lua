@@ -86,3 +86,82 @@ require("galaxyline.themes.eviline") -- status line
 require("illuminate") -- cursor word highlighting
 require("milli").vimenter({ splash = "skeleton", loop = true })
 require("toggleterm").setup()
+-- require("nvim-cmp").setup()
+
+-- local opts = { noremap = true, silent = true }
+
+-- Go to definition (like F12 in VSCode)
+-- vim.keymap.set("n", "gd", ":YcmCompleter GoToDefinition<CR>", opts)
+
+-- -- Go to declaration
+-- vim.keymap.set("n", "gD", ":YcmCompleter GoToDeclaration<CR>", opts)
+
+-- -- Go to implementation
+-- vim.keymap.set("n", "gi", ":YcmCompleter GoToImplementation<CR>", opts)
+
+-- -- Go to references (like Shift+F12)
+-- vim.keymap.set("n", "gr", ":YcmCompleter GoToReferences<CR>", opts)
+
+-- -- Hover docs (like hover in VSCode)
+-- vim.keymap.set("n", "K", ":YcmCompleter GetDoc<CR>", opts)
+
+-- -- Rename symbol
+-- vim.keymap.set("n", "<leader>rn", ":YcmCompleter RefactorRename<CR>", opts)
+
+-- -- Format code
+-- vim.keymap.set("n", "<leader>f", ":YcmCompleter Format<CR>", opts)
+
+-- vim.lsp.enable('clangd')
+-- LSP setup
+local lspconfig = require("lspconfig")
+
+local capabilities = require("cmp_nvim_lsp").default_capabilities()
+
+lspconfig.clangd.setup({
+  capabilities = capabilities,
+  cmd = { "clangd-20" }
+})
+
+-- Autocomplete (nvim-cmp)
+local cmp = require("cmp")
+
+cmp.setup({
+  snippet = {
+    expand = function(args)
+      require("luasnip").lsp_expand(args.body)
+    end,
+  },
+  mapping = cmp.mapping.preset.insert({
+    ["<C-Space>"] = cmp.mapping.complete(),
+    ["<CR>"] = cmp.mapping.confirm({ select = true }),
+    ["<Tab>"] = cmp.mapping.select_next_item(),
+    ["<S-Tab>"] = cmp.mapping.select_prev_item(),
+  }),
+  sources = {
+    { name = "nvim_lsp" },
+  },
+})
+
+local opts = { noremap = true, silent = true }
+
+vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
+vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
+vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
+vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
+vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
+
+vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
+vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
+
+-- vim.keymap.set("n", "<C-d>", function()
+--   if not vim.lsp.buf.hover then return end
+--   vim.cmd("normal! <C-d>")
+-- end)
+
+-- vim.keymap.set("n", "<C-u>", function()
+--   if not vim.lsp.buf.hover then return end
+--   vim.cmd("normal! <C-u>")
+-- end)
+
