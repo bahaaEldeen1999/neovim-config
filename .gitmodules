@@ -44,3 +44,18 @@
 
 
 
+[submodule "pack/manual/start/YouCompleteMe"]
+	path = pack/manual/start/YouCompleteMe
+	url = https://github.com/ycm-core/YouCompleteMe
+[submodule "pack/manual/start/nvim-cmp"]
+	path = pack/manual/start/nvim-cmp
+	url = https://github.com/hrsh7th/nvim-cmp.git
+[submodule "pack/manual/start/nvim-lspconfig"]
+	path = pack/manual/start/nvim-lspconfig
+	url = https://github.com/neovim/nvim-lspconfig.git
+[submodule "pack/manual/start/cmp-nvim-lsp"]
+	path = pack/manual/start/cmp-nvim-lsp
+	url = https://github.com/hrsh7th/cmp-nvim-lsp.git
+[submodule "pack/manual/start/LuaSnip"]
+	path = pack/manual/start/LuaSnip
+	url = https://github.com/L3MON4D3/LuaSnip

@@ -59,7 +59,7 @@ vim.keymap.set('n', '<C-o>', builtin.buffers, {})
 
 local material_fn = require('material.functions')
 vim.keymap.set('n', '<C-S-m>', material_fn.find_style, { desc = 'Material style switcher' })
-material_fn.change_style("deep ocean")
+material_fn.change_style("palenight")
 
 
 local builtin = require("nnn").builtin
