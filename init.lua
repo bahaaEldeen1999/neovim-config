@@ -1,16 +1,14 @@
--- data: /home/bahaa/.local/share/nvim   
+require("lua.lazy")
 
--- require("telescope.nvim")
 
 require("nnn").setup()
 
--- require("one-nvim")
 
 require('telescope').setup{
   defaults = {
     -- Default configuration for telescope goes here:
     -- config_key = value,
-    mappings = {
+    mappings ={
       i = {
         -- map actions.which_key to <C-h> (default: <C-/>)
         -- actions.which_key shows the mappings for your picker,
@@ -37,17 +35,10 @@ require('telescope').setup{
   }
 }
 
--- vim.cmd[[packadd! one-nvim]]
--- vim.cmd[[packadd! tokyonight]]
 
 require("material").setup()
--- require("barbar").setup()
--- require("one-nvim").setup()
--- vim.cmd[[colorscheme tokyonight]]
--- vim.cmd[[colorscheme palenight]]
 
 vim.cmd 'colorscheme material'
--- vim.g.material_style = "deep ocean"
 
 
 local builtin = require('telescope.builtin')
@@ -72,55 +63,36 @@ local builtin = require("nnn").builtin
     -- { "<C-w>", builtin.cd_to_path },        -- cd to file directory
     -- { "<C-e>", builtin.populate_cmdline },  -- populate cmdline (:) with file(s)
   }
--- colorscheme one-nvim
-
--- vim.opt.number = true
--- Ctrl + w, h/j/k/l: Move focus Left, Down, Up, or Right.
--- Ctrl + w, w: Cycle through all open windows in a "Z" pattern.
 
 vim.api.nvim_set_option("clipboard","unnamed")
 
 require('nvim-web-devicons').setup() 
 require('galaxyline')
-require("galaxyline.themes.eviline") -- status line
+--require("galaxyline.example.eviline") -- status line
 require("illuminate") -- cursor word highlighting
 require("milli").vimenter({ splash = "skeleton", loop = true })
-require("toggleterm").setup()
--- require("nvim-cmp").setup()
-
--- local opts = { noremap = true, silent = true }
-
--- Go to definition (like F12 in VSCode)
--- vim.keymap.set("n", "gd", ":YcmCompleter GoToDefinition<CR>", opts)
-
--- -- Go to declaration
--- vim.keymap.set("n", "gD", ":YcmCompleter GoToDeclaration<CR>", opts)
-
--- -- Go to implementation
--- vim.keymap.set("n", "gi", ":YcmCompleter GoToImplementation<CR>", opts)
-
--- -- Go to references (like Shift+F12)
--- vim.keymap.set("n", "gr", ":YcmCompleter GoToReferences<CR>", opts)
-
--- -- Hover docs (like hover in VSCode)
--- vim.keymap.set("n", "K", ":YcmCompleter GetDoc<CR>", opts)
-
--- -- Rename symbol
--- vim.keymap.set("n", "<leader>rn", ":YcmCompleter RefactorRename<CR>", opts)
-
--- -- Format code
--- vim.keymap.set("n", "<leader>f", ":YcmCompleter Format<CR>", opts)
-
--- vim.lsp.enable('clangd')
--- LSP setup
-local lspconfig = require("lspconfig")
 
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-lspconfig.clangd.setup({
+vim.lsp.config("*", {
   capabilities = capabilities,
-  cmd = { "clangd-20" }
+  -- cmd = { "clangd-20" }
 })
+
+
+vim.lsp.config["clangd"] = {
+	cmd = { "clangd-20"},
+	filetypes = { "c", "cpp"}
+}
+vim.lsp.enable("clangd")
+
+vim.lsp.config["pyright"] = {
+
+	cmd = { "pyright-langserver", "--stdio"},
+	filetypes = {"python"}
+}
+vim.lsp.enable("pyright")
+
 
 -- Autocomplete (nvim-cmp)
 local cmp = require("cmp")
@@ -155,13 +127,27 @@ vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
 vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
 vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
 
--- vim.keymap.set("n", "<C-d>", function()
---   if not vim.lsp.buf.hover then return end
---   vim.cmd("normal! <C-d>")
--- end)
+vim.opt.number = true
+vim.opt.relativenumber = true
 
--- vim.keymap.set("n", "<C-u>", function()
---   if not vim.lsp.buf.hover then return end
---   vim.cmd("normal! <C-u>")
--- end)
+
+
+
+
+
+
+require("conform").setup({
+  formatters_by_ft = {
+    lua = { "stylua" },
+    -- Conform will run multiple formatters sequentially
+    python = { "isort", "black" },
+    -- You can customize some of the format options for the filetype (:help conform.format)
+    rust = { "rustfmt", lsp_format = "fallback" },
+    -- Conform will run the first available formatter
+    javascript = { "prettierd", "prettier", stop_after_first = true },
+  },
+})
+
+
+
 
