@@ -1,4 +1,4 @@
-require("lua.lazy")
+require("lazyvim")
 
 
 require("nnn").setup()
